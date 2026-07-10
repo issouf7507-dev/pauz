@@ -14,10 +14,10 @@ jobs:
         uses: actions/checkout@v5
 
       # pnpm doit être installé AVANT setup-node quand on utilise `cache: pnpm`
+      # Pas de `version:` ici : pnpm/action-setup lit le champ "packageManager"
+      # de package.json (pnpm@11.3.0) → CI alignée sur la version locale
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Setup Node
         uses: actions/setup-node@v5
