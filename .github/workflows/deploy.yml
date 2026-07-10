@@ -11,27 +11,20 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
+      # pnpm doit être installé AVANT setup-node quand on utilise `cache: pnpm`
+      # (sinon setup-node échoue : il ne trouve pas pnpm pour résoudre le cache)
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 9
 
-      - name: Get pnpm store path
-        id: pnpm-cache
-        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Cache pnpm
-        uses: actions/cache@v4
+      - name: Setup Node
+        uses: actions/setup-node@v5
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          node-version: 22
+          cache: pnpm # cache intégré : remplace l'ancienne étape actions/cache
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -40,23 +33,23 @@ jobs:
         run: pnpm build
 
       - name: Upload files to VPS
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          port: ${{secrets.VPS_SSH_PORT}}
+          port: ${{ secrets.VPS_SSH_PORT }}
           source: "dist/*"
           target: /home/dev-issouf/apps/pauz
           strip_components: 1
           rm: true
 
       - name: Fix permissions on VPS
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          port: ${{secrets.VPS_SSH_PORT}}
+          port: ${{ secrets.VPS_SSH_PORT }}
