@@ -1,0 +1,75 @@
+/* SmoothScrollHero — hero parallaxe (image centrale qui se « dé-clippe » +
+   images flottantes) façon SpaceX, en Framer Motion. Fond sombre.
+   ⚠️ Contenu (calendrier, images Unsplash) = démo à rebrander pour PAUZ. */
+
+.smooth-hero {
+  background: var(--pauz-green-deep, #0d2b0f);
+}
+
+/* --- Hero (zone haute qui scrolle) --- */
+.smooth-hero__hero {
+  position: relative;
+  width: 100%;
+}
+
+.smooth-hero__center {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.smooth-hero__fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 43, 15, 0),
+    var(--pauz-green-deep, #0d2b0f)
+  );
+}
+
+/* --- Images parallaxe --- */
+/* margin-top négatif + z-index : le bloc remonte pour chevaucher l'image
+   centrale sticky, donc les images apparaissent tôt (pas 100vh plus bas). */
+.smooth-hero__images {
+  position: relative;
+  z-index: 1;
+  margin: -45vh auto 0;
+  max-width: 80rem;
+  padding: 0 24px 10vh;
+}
+
+.smooth-hero__pimg {
+  display: block;
+  max-width: 100%;
+  margin-bottom: 4rem;
+  border-radius: 10px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* Largeurs / alignements par image (remplacent les utilitaires Tailwind) */
+.sh-w13 {
+  width: 46%;
+}
+.sh-w23 {
+  width: 82%;
+}
+.sh-w512 {
+  width: 62%;
+}
+.sh-mx {
+  margin-left: auto;
+  margin-right: auto;
+}
+.sh-mr {
+  margin-left: auto;
+}
+.sh-ml24 {
+  margin-left: 4rem;
+}

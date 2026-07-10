@@ -1,0 +1,117 @@
+/* HeroScrub — hero cinématique piloté au scroll (séquence d'images sur canvas).
+   Section haute + div sticky interne = même rendu qu'un pin ScrollTrigger,
+   sans avoir besoin de pinner. Tout est sombre / plein écran. */
+
+.heroscrub {
+  position: relative;
+  width: 100%;
+  overflow: clip;
+  color: #fff;
+  background: #000;
+}
+
+.heroscrub__sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100svh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Calques de fond (couleur d'accent + assombrissement + halo + vignette) */
+.heroscrub__bg,
+.heroscrub__overlay,
+.heroscrub__glow,
+.heroscrub__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroscrub__overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.heroscrub__glow {
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(0, 0, 0, 0) 55%
+  );
+}
+
+.heroscrub__vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* Contenu (titres + carte) */
+.heroscrub__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .heroscrub__content {
+    gap: 1rem;
+  }
+}
+
+.heroscrub__title {
+  margin: 0;
+  font-family: var(--font-display, system-ui, sans-serif);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(3.75rem, 12vw, 11rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
+.heroscrub__card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.55);
+  will-change: transform;
+  --ring: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 20px 80px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+  .heroscrub__card {
+    border-radius: 16px;
+  }
+}
+
+/* Ombre interne portée sur la carte pour asseoir l'image */
+.heroscrub__card-shade {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.45);
+}
+
+.heroscrub__canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

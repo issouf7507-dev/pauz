@@ -1,0 +1,71 @@
+.pauz-btn {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55em;
+  padding: 0.92em 1.5em;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  will-change: transform;
+}
+
+/* Primary / whatsapp : pill plein (encre sur clair) */
+.pauz-btn--primary,
+.pauz-btn--whatsapp {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+}
+
+/* Light : pill claire (sur fond sombre) */
+.pauz-btn--light {
+  --btn-bg: var(--snow);
+  --btn-fg: var(--night);
+}
+.pauz-btn--light:hover {
+  opacity: 0.9;
+}
+
+/* Ghost : contour, fond transparent */
+.pauz-btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  border-color: var(--line-light);
+}
+.pauz-btn--ghost:hover {
+  border-color: var(--ink);
+}
+
+/* --- Sur fond sombre : on inverse --- */
+.section--dark .pauz-btn--primary,
+.section--dark .pauz-btn--whatsapp,
+.footer .pauz-btn--primary,
+.footer .pauz-btn--whatsapp {
+  --btn-bg: var(--snow);
+  --btn-fg: var(--night);
+}
+.section--dark .pauz-btn--ghost,
+.footer .pauz-btn--ghost {
+  --btn-fg: var(--snow);
+  border-color: var(--line-dark);
+}
+.section--dark .pauz-btn--ghost:hover,
+.footer .pauz-btn--ghost:hover {
+  border-color: var(--snow);
+}
+
+.pauz-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}

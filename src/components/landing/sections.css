@@ -1,0 +1,69 @@
+/* Styles partagés entre les sections de la landing — style éditorial mono */
+
+.section {
+  padding-block: clamp(72px, 11vw, 148px);
+}
+
+/* Section fond sombre (bas de page, façon lessestudio) */
+.section--dark {
+  background: var(--night);
+  color: var(--snow);
+}
+
+/* Petit label majuscule (eyebrow) */
+.section__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+.section__eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+}
+.section--dark .section__eyebrow {
+  color: var(--snow-3);
+}
+
+/* Grand titre display, tracking serré */
+.section__title {
+  margin-top: 22px;
+  font-size: clamp(2.1rem, 6vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 20ch;
+}
+
+.section__lead {
+  margin-top: 20px;
+  max-width: 54ch;
+  color: var(--ink-2);
+  font-size: clamp(1rem, 2.2vw, 1.16rem);
+  line-height: 1.5;
+}
+.section--dark .section__lead {
+  color: var(--snow-2);
+}
+
+/* Ancien helper : accent → devient encre pleine (mono) */
+.text-accent {
+  color: inherit;
+}
+
+.section--center {
+  text-align: center;
+}
+.section--center .section__eyebrow {
+  justify-content: center;
+}
+.section--center .section__title,
+.section--center .section__lead {
+  margin-inline: auto;
+}

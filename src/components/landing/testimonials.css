@@ -1,0 +1,111 @@
+.tm {
+  background: var(--night);
+}
+
+.tm__card {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(28px, 5vw, 72px);
+  padding: clamp(28px, 4vw, 56px);
+  border-radius: var(--r-xl);
+  background: var(--night-2);
+  border: 1px solid var(--line-dark);
+}
+
+.tm__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.tm__badge {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-dark);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--snow-2);
+}
+.tm__title {
+  margin-top: 22px;
+  font-size: clamp(1.8rem, 3.6vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+.tm__title .text-muted {
+  color: var(--snow-3);
+}
+.tm__cta {
+  margin-top: auto;
+  padding-top: 0;
+}
+.tm__left .tm__cta {
+  margin-top: clamp(32px, 5vw, 64px);
+}
+
+.tm__right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.tm__quote {
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 3vw, 38px);
+}
+.tm__quote--main {
+  background: var(--night-3);
+  border: 1px solid var(--line-dark);
+}
+.tm__quote--main p {
+  color: var(--snow);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.6;
+  text-align: center;
+}
+.tm__quote--muted p {
+  color: var(--snow-3);
+  font-size: 0.96rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.tm__author {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.tm__avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--snow);
+  color: var(--night);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+.tm__author-name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.tm__author-role {
+  display: block;
+  color: var(--snow-3);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 820px) {
+  .tm__card {
+    grid-template-columns: 1fr;
+  }
+  .tm__left .tm__cta {
+    margin-top: 28px;
+  }
+}
