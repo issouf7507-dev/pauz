@@ -1,0 +1,56 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      # pnpm doit être installé AVANT setup-node quand on utilise `cache: pnpm`
+      # Pas de `version:` ici : pnpm/action-setup lit le champ "packageManager"
+      # de package.json (pnpm@11.3.0) → CI alignée sur la version locale
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm # cache intégré : remplace l'ancienne étape actions/cache
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload files to VPS
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: ${{ secrets.VPS_SSH_PORT }}
+          source: "dist/*"
+          target: /home/dev-issouf/apps/pauz
+          strip_components: 1
+          rm: true
+
+      - name: Fix permissions on VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          port: ${{ secrets.VPS_SSH_PORT }}
+          script: |
+            chmod -R a+rX /home/dev-issouf/apps/pauz
