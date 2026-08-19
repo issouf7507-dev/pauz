@@ -1,0 +1,14 @@
+# Dépendances
+node_modules/
+
+# Sortie de build (régénérée par la CI via `pnpm build`)
+dist/
+
+# Cache incrémental TypeScript
+*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# Le projet utilise pnpm (packageManager + CI) : le lockfile npm ferait doublon
+package-lock.json
