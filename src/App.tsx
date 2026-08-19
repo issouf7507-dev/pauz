@@ -3,10 +3,12 @@ import AnnouncementBar from './components/AnnouncementBar'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Ticker from './components/Ticker'
-import ProductRow from './components/ProductRow'
+import Story from './components/Story'
+import ProductShowcase from './components/ProductShowcase'
 import JoyfulMoments from './components/JoyfulMoments'
 import LifeIsALot from './components/LifeIsALot'
 import FunctionMeetsFun from './components/FunctionMeetsFun'
+import Lookbook from './components/Lookbook'
 import Testimonials from './components/Testimonials'
 import BundleSave from './components/BundleSave'
 import MoreJoy from './components/MoreJoy'
@@ -22,11 +24,12 @@ export default function App() {
       <main>
         <Hero />
         <Ticker />
-        <ProductRow variant="drinks" />
-        <ProductRow variant="gummies" />
+        <Story />
+        <ProductShowcase />
         <JoyfulMoments />
         <LifeIsALot />
         <FunctionMeetsFun />
+        <Lookbook />
         <Testimonials />
         <BundleSave />
         <MoreJoy />

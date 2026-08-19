@@ -1,6 +1,6 @@
 import { Sun } from './Visuals'
 
-const items = ['Functional Ingredients', 'No Added Sugars', 'Gluten Free', 'Low Calorie', 'Vegan']
+const items = ['100 % Eau de coco', 'Sans sucre ajouté', 'Naturellement isotonique', 'Peu calorique', 'Vegan']
 
 export default function Ticker() {
   const row = [...items, ...items, ...items]

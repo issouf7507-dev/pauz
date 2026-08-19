@@ -26,11 +26,13 @@
 
   --line: rgba(20, 53, 26, 0.18);
 
-  /* Fonts — Playfair stands in for Fedro (condensed serif), Inter for Neue Montreal */
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-script: "Pacifico", cursive;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "Inter", -apple-system, sans-serif;
+  /* Fonts — Poppins across the whole site. The four roles are kept because every
+     component references them, but they now resolve to one family; the roles are
+     carried by weight, size and letter-spacing instead of by typeface. */
+  --font-display: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "Poppins", -apple-system, sans-serif;
 
   --container: 1360px;
   --radius: 14px;
@@ -117,13 +119,6 @@ ul {
   letter-spacing: 0.14em;
   font-size: 0.7rem;
   font-weight: 500;
-}
-
-.script {
-  font-family: var(--font-script);
-  text-transform: none;
-  transform: none;
-  font-weight: 400;
 }
 
 /* ---------- Layout ---------- */
@@ -214,3 +209,4 @@ section {
     transform: none;
   }
 }
+

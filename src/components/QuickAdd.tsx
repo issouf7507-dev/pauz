@@ -15,7 +15,7 @@ function Arrow() {
 }
 
 export default function QuickAdd({
-  label = 'Quick Add',
+  label = 'Ajout rapide',
   onClick,
 }: {
   label?: string

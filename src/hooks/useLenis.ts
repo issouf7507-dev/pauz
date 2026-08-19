@@ -5,6 +5,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+declare global {
+  interface Window {
+    __lenis?: Lenis
+  }
+}
+
 /**
  * Smooth-scroll via Lenis, synced with GSAP ScrollTrigger.
  * Lenis drives the single rAF loop through GSAP's ticker so that
@@ -23,6 +29,12 @@ export function useLenis() {
 
     // Keep ScrollTrigger in lock-step with Lenis' smoothed position.
     lenis.on('scroll', ScrollTrigger.update)
+
+    // Published so non-GSAP scroll consumers can scroll THROUGH Lenis instead of
+    // fighting it — a native window.scrollTo({behavior:'smooth'}) gets swallowed
+    // on the next Lenis frame. No current caller; kept as the supported entry
+    // point for any future one.
+    window.__lenis = lenis
 
     const raf = (time: number) => {
       lenis.raf(time * 1000)
@@ -50,6 +62,7 @@ export function useLenis() {
     return () => {
       document.removeEventListener('click', onClick)
       gsap.ticker.remove(raf)
+      delete window.__lenis
       lenis.destroy()
     }
   }, [])
