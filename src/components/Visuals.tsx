@@ -1,13 +1,40 @@
+import { logos } from '../assets/media'
+
 /* Original SVG product visuals — cans & gummy pouches drawn in code. */
 
-export function Wordmark({ color = 'currentColor', size = 30 }: { color?: string; size?: number }) {
+type WordmarkProps = {
+  /** Rendered height in px — the lockup keeps its own aspect ratio. */
+  size?: number
+  /** Ink colour of the artwork. Pick the one that reads on the background. */
+  variant?: 'green' | 'white'
+  /** Adds the "Eau de coco / 100% Naturelle" baseline under the wordmark. */
+  tagline?: boolean
+  className?: string
+  /** Pass "" when a wrapping link already names the mark. */
+  alt?: string
+}
+
+/**
+ * The PAUZ wordmark, from the supplied artwork in `assets/logos`.
+ * It is the brand mark, so it ships as artwork rather than as set type — the
+ * A with no crossbar is not something a font gives us.
+ */
+export function Wordmark({ size = 30, variant = 'green', tagline = false, className, alt = 'PAUZ' }: WordmarkProps) {
+  const src = tagline
+    ? variant === 'white'
+      ? logos.whiteTagline
+      : logos.greenTagline
+    : variant === 'white'
+      ? logos.white
+      : logos.green
+
   return (
-    <span
-      className="script"
-      style={{ fontSize: size, color, lineHeight: 1, display: 'inline-block' }}
-    >
-      PAUZ
-    </span>
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      style={{ height: size, width: 'auto', display: 'block' }}
+    />
   )
 }
 
@@ -56,8 +83,10 @@ export function Can({ body, cap }: { body: string; cap: string }) {
         x="70"
         y="138"
         textAnchor="middle"
-        fontFamily="Pacifico, cursive"
-        fontSize="26"
+        fontFamily="var(--font-script)"
+        fontWeight="700"
+        letterSpacing="1"
+        fontSize="24"
         fill="#fff"
       >
         PAUZ
@@ -89,7 +118,16 @@ export function Pouch({ body, accent }: { body: string; accent: string }) {
       />
       {/* label */}
       <circle cx="90" cy="96" r="42" fill="#fff" opacity="0.15" />
-      <text x="90" y="104" textAnchor="middle" fontFamily="Pacifico, cursive" fontSize="26" fill="#fff">
+      <text
+        x="90"
+        y="104"
+        textAnchor="middle"
+        fontFamily="var(--font-script)"
+        fontWeight="700"
+        letterSpacing="1"
+        fontSize="24"
+        fill="#fff"
+      >
         PAUZ
       </text>
       <rect x="52" y="150" width="76" height="8" rx="4" fill="#fff" opacity="0.4" />

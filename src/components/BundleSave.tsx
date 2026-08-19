@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { useReveal } from "../hooks/useReveal";
 import SplitReveal from "./SplitReveal";
-import { Can, Pouch } from "./Visuals";
+import { cans } from "../assets/media";
 
 const perks = [
-  "15% off every bundle",
-  "Free shipping over $75",
-  "Cancel or skip anytime",
-  "Members-only drops",
+  "15 % de remise sur le pack de 12",
+  "Livraison offerte dès 75 $",
+  "Annulation ou report à tout moment",
+  "Livrée prête à rafraîchir",
 ];
 
 export default function BundleSave() {
@@ -17,7 +17,7 @@ export default function BundleSave() {
       <div className="container bundle__inner">
         <div className="bundle__left">
           <SplitReveal as="h2" className="display" style={{ color: "#fff" }}>
-            Bundle &amp; Save
+            Remplis le frigo
           </SplitReveal>
           <p
             className="bundle__lead reveal"
@@ -25,27 +25,23 @@ export default function BundleSave() {
               color: "#fefefe",
             }}
           >
-            Why pick one? Curate your evening with a variety pack of our
-            signature blends — a little something for every feeling.
+            Il n’y a rien à choisir — juste combien. Prends le pack de 12 et
+            garde-en une au frais pour chaque après-midi de la semaine.
           </p>
           <div className="bundle__cans reveal">
-            <div style={{ width: 120 }}>
-              <Can body="#fbf6ed" cap="#dcd3bd" />
-            </div>
-            <div style={{ width: 120, marginTop: 24 }}>
-              <Can body="#c5dd7f" cap="#9ec27a" />
-            </div>
-            <div style={{ width: 120 }}>
-              <Can body="#1b5e20" cap="#123018" />
-            </div>
+            <img
+              src={cans.trio}
+              alt="Trois canettes PAUZ eau de coco 330 ml"
+              className="bundle__pack"
+            />
           </div>
         </div>
 
         <div className="bundle__right">
           <SplitReveal as="h3" className="display" style={{ color: "#fff" }}>
-            Order More.
-            <br /> Save More.
-            <br /> Joy More.
+            Commande plus.
+            <br /> Économise plus.
+            <br /> Sois moins à sec.
           </SplitReveal>
           <ul className="bundle__perks">
             {perks.map((p, i) => (
@@ -60,21 +56,13 @@ export default function BundleSave() {
               </li>
             ))}
           </ul>
-          <div className="bundle__pouches reveal">
-            <div style={{ width: 130 }}>
-              <Pouch body="#c5dd7f" accent="#1b5e20" />
-            </div>
-            <div style={{ width: 130, marginTop: 20 }}>
-              <Pouch body="#fbf6ed" accent="#2e7d32" />
-            </div>
-          </div>
           <motion.a
             href="#drinks"
             className="btn reveal"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >
-            Build Your Bundle
+            Prendre le pack de 12
           </motion.a>
         </div>
       </div>
@@ -93,7 +81,9 @@ export default function BundleSave() {
         @media (max-width: 820px) { .bundle__inner { grid-template-columns: 1fr; } }
         .bundle h2.display { font-size: clamp(2.4rem, 6vw, 4.6rem); margin-bottom: 1rem; }
         .bundle__lead { max-width: 360px; line-height: 1.55; opacity: .92; margin-bottom: 2rem; font-size: .95rem; }
-        .bundle__cans, .bundle__pouches { display: flex; align-items: flex-end; gap: 8px; }
+        .bundle__cans { display: flex; align-items: flex-end; justify-content: flex-start; gap: 4px; }
+        .bundle__cans img { height: auto; filter: drop-shadow(0 20px 26px rgba(9,26,13,.35)); }
+        .bundle__pack { width: min(360px, 100%); }
         .bundle__right h3.display { font-size: clamp(1.6rem, 3.6vw, 2.8rem); margin-bottom: 1.4rem; }
         .bundle__perks { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.8rem; }
         .bundle__perks li {
@@ -101,7 +91,6 @@ export default function BundleSave() {
           font-family: var(--font-mono); font-size: .74rem; letter-spacing: .05em; text-transform: uppercase;
         }
         .bundle__perks .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); }
-        .bundle__pouches { margin: 0 0 2rem; }
         .bundle .btn { background: var(--cream); color: var(--maroon); border-color: var(--cream); }
         .bundle .btn:hover { background: var(--yellow); border-color: var(--yellow); }
       `}</style>

@@ -10,8 +10,8 @@ export default function Testimonials() {
     <section className="tst" ref={ref}>
       <div className="container">
         <SplitReveal as="h2" className="section-title" style={{ textAlign: 'center' }}>
-          Don’t Take Our
-          <br /> Word for It
+          Ne nous crois pas
+          <br /> sur parole
         </SplitReveal>
 
         <div className="tst__arrows reveal">
@@ -51,10 +51,12 @@ export default function Testimonials() {
         }
         @media (max-width: 820px) { .tst__grid { grid-template-columns: 1fr; } }
         .tcard {
-          border: 1.5px solid var(--line);
           border-radius: var(--radius);
           padding: 26px 24px;
+          /* Paper on cream is nearly the same value, so with the border gone the
+             shadow is the only thing separating the card from the page. */
           background: var(--paper);
+          box-shadow: 0 14px 30px rgba(9, 26, 13, .09);
         }
         .tcard h3 {
           font-family: var(--font-display);

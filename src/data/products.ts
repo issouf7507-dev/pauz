@@ -1,49 +1,41 @@
-export type Drink = {
+export type Product = {
   id: string
   name: string
   flavor: string
+  /** TODO: prix réel à confirmer */
   price: string
+  size: string
+  tagline: string
   body: string
-  cap: string
-  /** tile theme */
-  tileBg: string
-  tileText: string
+  specs: { label: string; value: string }[]
 }
 
-export type Gummy = {
-  id: string
-  name: string
-  mood: string
-  price: string
-  body: string
-  accent: string
-  tileBg: string
-  tileText: string
+/** Le seul produit PAUZ commercialisé pour le moment. */
+export const product: Product = {
+  id: 'pauz-coconut-water',
+  name: 'PAUZ Eau de coco',
+  flavor: '100 % eau de coco',
+  price: '4,50 $',
+  size: '330 ml',
+  tagline: 'Une canette. Rien à ajouter.',
+  body: "De l’eau de coco pure, mise en canette à froid, et rien d’autre. Sans sucre ajouté, sans concentré, sans colorant — juste l’hydratation nette et naturellement douce dont tu as envie après le soleil, la salle, ou une longue journée.",
+  specs: [
+    { label: 'Format', value: 'Canette slim 330 ml' },
+    { label: 'Sucres', value: 'Sans sucre ajouté' },
+    { label: 'Ingrédients', value: '100 % eau de coco' },
+    { label: 'Service', value: 'Bien fraîche, à la canette' },
+  ],
 }
-
-export const drinks: Drink[] = [
-  { id: 'd1', name: 'Tropical Tangerine', flavor: 'Citrus + Ginger', price: '$4.50', body: '#c5dd7f', cap: '#9ec27a', tileBg: '#fbf6ed', tileText: '#1b5e20' },
-  { id: 'd2', name: 'Lush Cherry', flavor: 'Dark Cherry', price: '$4.50', body: '#4a9a4e', cap: '#2e7d32', tileBg: '#1b5e20', tileText: '#fbf6ed' },
-  { id: 'd3', name: 'Wild Berries', flavor: 'Mixed Berry', price: '$4.50', body: '#2e7d32', cap: '#1b5e20', tileBg: '#2e7d32', tileText: '#f0e9d6' },
-  { id: 'd4', name: 'Ruby Orange', flavor: 'Blood Orange', price: '$4.50', body: '#6b9c4f', cap: '#4a7a34', tileBg: '#123018', tileText: '#c5dd7f' },
-]
-
-export const gummies: Gummy[] = [
-  { id: 'g1', name: 'Social Spark', mood: 'Uplift + Energy', price: '$28.00', body: '#c5dd7f', accent: '#1b5e20', tileBg: '#2e7d32', tileText: '#fbf6ed' },
-  { id: 'g2', name: 'Sweet Dreams', mood: 'Rest + Calm', price: '$28.00', body: '#4a9a4e', accent: '#123018', tileBg: '#123018', tileText: '#c5dd7f' },
-  { id: 'g3', name: 'Pure Zen', mood: 'Balance', price: '$28.00', body: '#9ec27a', accent: '#1b5e20', tileBg: '#fbf6ed', tileText: '#1b5e20' },
-  { id: 'g4', name: 'Stress Melt', mood: 'Unwind', price: '$28.00', body: '#6b9c4f', accent: '#123018', tileBg: '#1b5e20', tileText: '#c5dd7f' },
-]
 
 export const testimonials = [
-  { rating: 5, title: 'Perfect way to unwind', body: 'I was honestly a bit skeptical at first, but PAUZ drinks completely changed my mind. The effect is smooth and relaxing without feeling overwhelming.', author: 'Tina A.' },
-  { rating: 5, title: 'My new favorite treat', body: 'These gummies are amazing. The flavor is actually really good and I take one after work and if just melts the stress away. Will definitely be ordering again.', author: 'Sara M.' },
-  { rating: 5, title: 'Subtle, relaxing, delicious', body: 'These drinks taste great and give a calm, happy feeling without being too intense. Perfect for a chill night at home.', author: 'Nina K.' },
+  { rating: 5, title: 'Le goût de la vraie', body: 'J’étais sceptique sur l’eau de coco en canette, mais celle-ci a vraiment le goût du frais — pas le truc plat et sirupeux qu’on obtient à partir de concentré. C’est devenue ma boisson d’après-course.', author: 'Tina A.' },
+  { rating: 5, title: 'Enfin sans sucre ajouté', body: 'Je lis toutes les étiquettes et celle-ci est d’un ennui rafraîchissant : de l’eau de coco, et c’est tout. Légère, nette, et pas bizarrement sucrée comme les autres.', author: 'Sara M.' },
+  { rating: 5, title: 'Parfaite sortie du frigo', body: 'J’en garde toujours quelques-unes au frais. Froide, directement à la canette, un après-midi de chaleur : c’est tout l’intérêt — pas de verre, pas de pulpe, rien à ajouter.', author: 'Nina K.' },
 ]
 
 export const moments = [
-  { title: 'Unwind & Reset', body: 'Take a breath and let the day melt off. Made for after-work exhales, cozy nights in, and those quiet moments when you finally get to slow down.' },
-  { title: 'Gather & Connect', body: 'Good company, easy laughter, and conversations that linger. Perfect for dinner parties, book clubs, backyard hangs, and the everyday moments that bring people closer.' },
-  { title: 'Celebrate & Spark', body: 'Bring a little extra glow to the occasion. From girls’ nights and birthday toasts to bachelorette parties, these are the moments made to feel lively, light, and unforgettable.' },
-  { title: 'Play & Indulge', body: 'Say yes to the fun part. Think pool days, tailgates, BBQs, weekend escapes, and carefree afternoons where the mood is sunny, social, and full of joy.' },
+  { title: 'Après le soleil', body: 'Les journées plage, les longues marches, les après-midi plus chauds que prévu. Naturellement isotonique, elle remet ce que la chaleur a pris — froide, directement à la canette.' },
+  { title: 'Après le sport', body: 'Du potassium et des électrolytes naturels sans sucre ajouté, pour les vingt minutes après la dernière série, quand l’eau seule ne suffit pas tout à fait.' },
+  { title: 'La pause de midi', body: 'L’intervalle entre deux réunions, le retour du déjeuner. Une canette, quatre minutes, et le reste de la journée repart de plus haut.' },
+  { title: 'La fin de journée', body: 'Quand tu veux quelque chose de froid qui ne soit pas sucré, pas caféiné, et qui ne te demande rien. Juste de l’eau de coco, et rien à ajouter.' },
 ]

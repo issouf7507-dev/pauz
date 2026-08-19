@@ -1,10 +1,10 @@
 import { Sun } from './Visuals'
 
 const items = [
-  'FREE SHIPPING OVER $75',
-  'ALWAYS 3RD-PARTY LAB TESTED',
-  'JOYFULLY POTENT',
-  'FEEL-GOOD FUNCTIONAL DRINKS',
+  'LIVRAISON OFFERTE DÈS 75 $',
+  '100 % EAU DE COCO',
+  'JAMAIS DE SUCRE AJOUTÉ',
+  'UNE CANETTE. RIEN À AJOUTER.',
 ]
 
 export default function AnnouncementBar() {

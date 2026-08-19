@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Wordmark } from "./Visuals";
+import { banners } from "../assets/media";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,9 +13,12 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.to(bgRef.current, {
-        yPercent: 18,
-        scale: 1.08,
+      gsap.fromTo(bgRef.current, {
+        yPercent: -4,
+        scale: 1.05,
+      }, {
+        yPercent: 4,
+        scale: 1.05,
         ease: "none",
         scrollTrigger: {
           trigger: ref.current,
@@ -42,7 +46,13 @@ export default function Hero() {
 
   return (
     <section className="hero" ref={ref} id="top">
-      <div className="hero__bg" ref={bgRef} />
+      <div
+        className="hero__bg"
+        ref={bgRef}
+        style={{ backgroundImage: `url(${banners.cheers})` }}
+        role="img"
+        aria-label="Quatre amies trinquent avec des canettes PAUZ sous un ciel bleu"
+      />
       <div className="hero__grain" />
       <div className="hero__scrim" />
 
@@ -54,7 +64,7 @@ export default function Hero() {
           initial="hidden"
           animate="show"
         >
-          Sparkling · Functional · Feel-Good
+          Eau de coco · Rien d’ajouté · Une canette
         </motion.p>
 
         <h1 className="hero__title display">
@@ -64,7 +74,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
-            THC-Infused Sparkling
+            Eau de coco
           </motion.span>
           <motion.span
             custom={2}
@@ -72,7 +82,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
-            Juices &amp; Gummies
+            100 % naturelle
           </motion.span>
         </h1>
 
@@ -83,19 +93,20 @@ export default function Hero() {
           initial="hidden"
           animate="show"
         >
-          Crafted for the mind that pulls and unfair advantage — always
-          balanced, never over the top. Lifestyle choices.
+          Mise en canette à froid, directement issue de la noix. Sans sucre
+          ajouté, sans concentré, sans colorant — juste l’hydratation qui
+          manquait à ta journée.
         </motion.p>
 
         <motion.div custom={4} variants={fade} initial="hidden" animate="show">
           <a href="#drinks" className="btn btn--sun hero__cta">
-            Shop Now
+            Commander
           </a>
         </motion.div>
       </div>
 
       <div className="hero__badge">
-        <Wordmark size={40} color="#f4e3c8" />
+        <Wordmark size={34} variant="white" />
       </div>
 
       <style>{`
@@ -111,33 +122,36 @@ export default function Hero() {
         }
         .hero__bg {
           position: absolute;
-          inset: -8% 0 0 0;
-          background:
-            radial-gradient(120% 90% at 70% 10%, rgba(197,221,127,.5), transparent 55%),
-            radial-gradient(90% 80% at 15% 80%, rgba(74,154,78,.55), transparent 60%),
-            radial-gradient(120% 120% at 50% 120%, rgba(18,48,24,.92), transparent 72%),
-            linear-gradient(160deg, #2e7d32 0%, #1b5e20 50%, #123018 100%);
+          inset: -9% 0 -9% 0;
+          background-color: #123018;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: 50% 42%;
           will-change: transform;
         }
         .hero__grain {
           position: absolute;
           inset: 0;
-          opacity: .16;
+          opacity: .10;
           mix-blend-mode: overlay;
+          pointer-events: none;
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
         .hero__scrim {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(18,48,24,.5) 0%, transparent 30%, rgba(18,48,24,.4) 100%);
+          background:
+            linear-gradient(180deg, rgba(10,32,16,.55) 0%, rgba(10,32,16,.18) 24%, rgba(10,32,16,.34) 58%, rgba(10,32,16,.82) 100%),
+            radial-gradient(58% 46% at 50% 50%, rgba(10,32,16,.62), rgba(10,32,16,.18) 62%, transparent 80%);
         }
         .hero__content {
           position: relative;
           z-index: 2;
           text-align: center;
           margin: 0 auto;
-          max-width: 1800px;
+          max-width: var(--container);
           width: 100%;
+          text-shadow: 0 2px 26px rgba(10,30,14,.55);
         }
         .hero__eyebrow {
           font-family: var(--font-mono);
@@ -148,7 +162,7 @@ export default function Hero() {
           opacity: .9;
         }
         .hero__title {
-          font-size: clamp(2.6rem, 8vw, 6.4rem);
+          font-size: clamp(2.4rem, 6.4vw, 5.6rem);
           transform: scaleX(.92);
           transform-origin: center;
           margin: 0 auto .1rem;
@@ -176,6 +190,19 @@ export default function Hero() {
           transform: translateX(-50%) rotate(-6deg);
           z-index: 2;
           opacity: .95;
+        }
+
+        @media (max-width: 860px) {
+          .hero { min-height: 88vh; }
+          .hero__bg { background-position: 56% 40%; }
+          .hero__scrim {
+            background: linear-gradient(180deg, rgba(18,48,24,.6) 0%, rgba(18,48,24,.32) 22%, rgba(18,48,24,.5) 55%, rgba(18,48,24,.9) 100%);
+          }
+          .hero__badge { bottom: 2%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero__bg { transform: none !important; }
         }
       `}</style>
     </section>

@@ -1,11 +1,10 @@
 import { Wordmark, Sun } from './Visuals'
 
 const columns = [
-  { title: 'Drinks', links: ['Tropical Tangerine', 'Lush Cherry', 'Wild Berries', 'Variety Pack'] },
-  { title: 'Gummies', links: ['Social Spark', 'Sweet Dreams', 'Pure Zen', 'Stress Melt', 'Daily Elevation'] },
-  { title: 'Learn', links: ['About Us', 'FAQ'] },
-  { title: 'Account', links: ['Contact Us', 'My Account', 'Lab Results'] },
-  { title: 'Policies', links: ['Refund Policy', 'Privacy Policy', 'Shipping Policy', 'Terms of Service'] },
+  { title: 'Boutique', links: ['PAUZ Eau de coco', 'Canette à l’unité', 'Pack de 12', 'Abonnement & économies'] },
+  { title: 'À savoir', links: ['À propos', 'Notre sourcing', 'FAQ'] },
+  { title: 'Compte', links: ['Nous contacter', 'Mon compte', 'Suivre ma commande'] },
+  { title: 'Mentions', links: ['Politique de remboursement', 'Politique de confidentialité', 'Politique de livraison', 'Conditions générales'] },
 ]
 
 export default function Footer() {
@@ -13,8 +12,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__top">
         <div className="footer__brand">
-          <Wordmark size={40} color="var(--cream)" />
-          <p>Clean, functional, feel-good drinks &amp; gummies for your most joyful moments.</p>
+          <Wordmark size={44} variant="white" />
+          <p>Une canette d’eau de coco 100 % pure. Sans sucre ajouté, sans concentré, sans colorant.</p>
         </div>
         <div className="footer__cols">
           {columns.map((c) => (
@@ -34,15 +33,15 @@ export default function Footer() {
 
       <div className="footer__disclaimer container">
         <p>
-          These statements have not been evaluated by the FDA. Products are not intended to diagnose,
-          treat, cure, or prevent any disease. Products contain a THC serving — must be 21+ to purchase.
-          Please enjoy responsibly.
+          PAUZ est une boisson à base d’eau de coco 100 % pure. C’est un produit alimentaire, pas un
+          médicament : il n’est destiné à diagnostiquer, traiter, guérir ni prévenir aucune maladie.
+          À servir bien fraîche, et à consommer dans les jours qui suivent l’ouverture.
         </p>
       </div>
 
       <div className="footer__bar">
         <div className="container footer__bar-inner">
-          <span>© {new Date().getFullYear()} PAUZ. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} PAUZ. Tous droits réservés.</span>
           <span className="footer__suns">
             <Sun size={14} color="var(--orange-soft)" />
             <Sun size={14} color="var(--yellow)" />

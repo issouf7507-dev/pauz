@@ -20,18 +20,19 @@ export default function Header() {
     >
       <div className="header__inner container">
         <nav className="header__nav header__nav--left">
-          <a href="#drinks">Products ▾</a>
-          <a href="#learn">Learn ▾</a>
+          <a href="#drinks">Produits ▾</a>
+          <a href="#learn">À savoir ▾</a>
         </nav>
 
-        <a href="#top" className="header__logo" aria-label="PAUZ home">
-          <Wordmark size={34} />
+        <a href="#top" className="header__logo" aria-label="Accueil PAUZ">
+          <Wordmark size={24} variant="white" alt="" className="header__mark" />
+          <Wordmark size={24} alt="" className="header__mark header__mark--solid" />
         </a>
 
         <nav className="header__nav header__nav--right">
-          <a href="#account">Account</a>
+          <a href="#account">Compte</a>
           <a href="#cart" className="header__cart">
-            Cart <span>0</span>
+            Panier <span>0</span>
           </a>
         </nav>
       </div>
@@ -66,7 +67,13 @@ export default function Header() {
         .header__nav a { transition: opacity .2s; }
         .header__nav a:hover { opacity: .6; }
         .header__nav--right { justify-content: flex-end; }
-        .header__logo { justify-self: center; }
+        /* Both inks are rendered and cross-faded rather than swapping src:
+           the second file would not be in cache on the first scroll. */
+        .header__logo { justify-self: center; position: relative; line-height: 0; }
+        .header__mark { transition: opacity .3s ease; }
+        .header__mark--solid { position: absolute; inset: 0; opacity: 0; }
+        .header--solid .header__mark { opacity: 0; }
+        .header--solid .header__mark--solid { opacity: 1; }
         .header__cart span {
           display: inline-grid;
           place-items: center;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useReveal } from "../hooks/useReveal";
 import SplitReveal from "./SplitReveal";
+import { Wordmark } from "./Visuals";
 
 export default function MoreJoy() {
   const ref = useReveal<HTMLDivElement>({ stagger: 0.1 });
@@ -12,14 +13,12 @@ export default function MoreJoy() {
     <section className="morejoy" ref={ref}>
       <div className="container morejoy__inner">
         <div className="morejoy__pill reveal">
-          <span className="script" style={{ fontSize: 26, color: "#FFF" }}>
-            PAUZ
-          </span>
+          <Wordmark size={20} variant="white" />
         </div>
 
         <SplitReveal as="h2" className="morejoy__title">
-          More Joy
-          <br /> More Often
+          Plus de PAUZ
+          <br /> Plus souvent
         </SplitReveal>
 
         <form
@@ -32,10 +31,10 @@ export default function MoreJoy() {
           <input
             type="email"
             required
-            placeholder="Enter your email"
+            placeholder="Ton adresse e-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            aria-label="Email"
+            aria-label="Adresse e-mail"
           />
           <motion.button
             type="submit"
@@ -43,13 +42,12 @@ export default function MoreJoy() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
           >
-            {sent ? "Joined ✓" : "Notify Me"}
+            {sent ? "Inscrit ✓" : "Préviens-moi"}
           </motion.button>
         </form>
 
         <p className="morejoy__note reveal">
-          Get early access to drops, member pricing and a little joy in your
-          inbox.
+          Alertes de réapprovisionnement, tarifs membres, et rien d’autre dans ta boîte mail.
         </p>
       </div>
 
