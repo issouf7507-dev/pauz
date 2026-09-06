@@ -1,13 +1,60 @@
 import { Wordmark, Sun } from './Visuals'
+import { useOrder } from '../lib/order'
+import { legalDocs } from '../data/legal'
+import { contact, telUrl, whatsappUrl } from '../data/contact'
+import { sectionHref, usePath } from '../lib/router'
 
-const columns = [
-  { title: 'Boutique', links: ['PAUZ Eau de coco', 'Canette à l’unité', 'Pack de 12', 'Abonnement & économies'] },
-  { title: 'À savoir', links: ['À propos', 'Notre sourcing', 'FAQ'] },
-  { title: 'Compte', links: ['Nous contacter', 'Mon compte', 'Suivre ma commande'] },
-  { title: 'Mentions', links: ['Politique de remboursement', 'Politique de confidentialité', 'Politique de livraison', 'Conditions générales'] },
+/**
+ * Chaque entrée mène quelque part : une section de la page, ou l'ouverture du
+ * tunnel de commande sur une quantité. Le site n'a qu'une page — donc pas de
+ * lien vers des pages qui n'existent pas.
+ */
+type FooterLink = {
+  label: string
+  /** Ancre de la page d'accueil, chemin interne, ou lien externe (WhatsApp, mailto). */
+  href?: string
+  /** À défaut de lien : ouvre le tunnel de commande sur cette quantité. */
+  quantity?: number
+  external?: boolean
+}
+
+const columns: { title: string; links: FooterLink[] }[] = [
+  {
+    title: 'Boutique',
+    links: [
+      { label: 'PAUZ Eau de coco', href: '#drinks' },
+      { label: 'Canette à l’unité', quantity: 1 },
+      { label: 'Pack de 12', quantity: 12 },
+      { label: 'Pack de 24', quantity: 24 },
+    ],
+  },
+  {
+    title: 'À savoir',
+    links: [
+      { label: 'D’où ça vient', href: '#learn' },
+      { label: 'L’étiquette', href: '#label' },
+      { label: 'En images', href: '#lookbook' },
+      { label: 'Les avis', href: '#avis' },
+    ],
+  },
+  {
+    title: 'Nous joindre',
+    links: [
+      { label: 'WhatsApp', href: whatsappUrl(), external: true },
+      { label: contact.phone, href: telUrl(), external: true },
+      { label: contact.email, href: `mailto:${contact.email}`, external: true },
+    ],
+  },
+  {
+    title: 'Mentions',
+    links: legalDocs.map((doc) => ({ label: doc.title, href: doc.path })),
+  },
 ]
 
 export default function Footer() {
+  const { openOrder } = useOrder()
+  const path = usePath()
+
   return (
     <footer className="footer">
       <div className="container footer__top">
@@ -21,8 +68,19 @@ export default function Footer() {
               <h4>{c.title}</h4>
               <ul>
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#">{l}</a>
+                  <li key={l.label}>
+                    {l.href ? (
+                      <a
+                        href={l.href.startsWith('#') ? sectionHref(path, l.href.slice(1)) : l.href}
+                        {...(l.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                      >
+                        {l.label}
+                      </a>
+                    ) : (
+                      <button type="button" onClick={() => openOrder(l.quantity)}>
+                        {l.label}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -74,8 +132,23 @@ export default function Footer() {
           color: var(--orange-soft);
         }
         .footer__col li { margin-bottom: .55rem; }
-        .footer__col a { font-size: .82rem; opacity: .8; transition: opacity .2s; }
-        .footer__col a:hover { opacity: 1; }
+        /* Les entrées qui ouvrent la commande sont des <button> : même allure
+           que les liens, mais elles déclenchent une action, pas une navigation. */
+        .footer__col a,
+        .footer__col button {
+          font: inherit;
+          font-size: .82rem;
+          color: inherit;
+          text-align: left;
+          padding: 0;
+          border: 0;
+          background: none;
+          cursor: pointer;
+          opacity: .8;
+          transition: opacity .2s;
+        }
+        .footer__col a:hover,
+        .footer__col button:hover { opacity: 1; }
         .footer__disclaimer {
           padding: 24px 0;
           border-top: 1px solid rgba(255,255,255,.1);

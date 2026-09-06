@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useReveal } from '../hooks/useReveal'
 import SplitReveal from './SplitReveal'
 import QuickAdd from './QuickAdd'
+import { useOrder } from '../lib/order'
 import { Sun } from './Visuals'
 import { product } from '../data/products'
 import { cans } from '../assets/media'
@@ -13,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 /** Single-product section — PAUZ only sells the coconut water can for now. */
 export default function ProductShowcase() {
+  const { openOrder } = useOrder()
   const reveal = useReveal<HTMLElement>({ stagger: 0.12 })
   const stageRef = useRef<HTMLDivElement>(null)
 
@@ -75,7 +77,7 @@ export default function ProductShowcase() {
               {product.price}
               <em>/ {product.size}</em>
             </span>
-            <QuickAdd label="Ajouter au panier" />
+            <QuickAdd label="Commander" onClick={() => openOrder(1)} />
           </div>
         </div>
       </div>

@@ -7,7 +7,18 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:api": "pnpm --filter @pauz/server dev",
+    "build:api": "pnpm --filter @pauz/server build",
+    "dev:admin": "pnpm --filter @pauz/admin dev",
+    "build:admin": "pnpm --filter @pauz/admin build",
+    "db:generate": "pnpm --filter @pauz/server prisma:generate",
+    "db:deploy": "pnpm --filter @pauz/server prisma:deploy",
+    "db:migrate": "pnpm --filter @pauz/server prisma:migrate",
+    "db:seed": "pnpm --filter @pauz/server db:seed",
+    "db:studio": "pnpm --filter @pauz/server prisma:studio",
+    "seed:demo": "pnpm --filter @pauz/server seed:demo",
+    "smoke": "pnpm --filter @pauz/server smoke"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",

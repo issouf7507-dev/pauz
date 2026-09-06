@@ -1,2 +1,10 @@
+packages:
+  - 'server'
+  - 'admin'
+
 allowBuilds:
   esbuild: false
+  # Prisma télécharge ses moteurs de requête via un script postinstall :
+  # sans ces autorisations, `prisma generate` échoue au premier lancement.
+  prisma: true
+  '@prisma/engines': true

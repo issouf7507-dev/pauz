@@ -7,7 +7,7 @@ import { Stars } from './Visuals'
 export default function Testimonials() {
   const ref = useReveal<HTMLDivElement>({ stagger: 0.12 })
   return (
-    <section className="tst" ref={ref}>
+    <section className="tst" id="avis" ref={ref}>
       <div className="container">
         <SplitReveal as="h2" className="section-title" style={{ textAlign: 'center' }}>
           Ne nous crois pas

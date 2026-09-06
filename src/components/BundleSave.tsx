@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useReveal } from "../hooks/useReveal";
 import SplitReveal from "./SplitReveal";
 import { cans } from "../assets/media";
+import { useOrder } from "../lib/order";
 
 const perks = [
   "15 % de remise sur le pack de 12",
@@ -11,9 +12,10 @@ const perks = [
 ];
 
 export default function BundleSave() {
+  const { openOrder } = useOrder();
   const ref = useReveal<HTMLDivElement>({ stagger: 0.1 });
   return (
-    <section className="bundle" ref={ref}>
+    <section className="bundle" id="packs" ref={ref}>
       <div className="container bundle__inner">
         <div className="bundle__left">
           <SplitReveal as="h2" className="display" style={{ color: "#fff" }}>
@@ -56,14 +58,15 @@ export default function BundleSave() {
               </li>
             ))}
           </ul>
-          <motion.a
-            href="#drinks"
+          <motion.button
+            type="button"
+            onClick={() => openOrder(12)}
             className="btn reveal"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >
             Prendre le pack de 12
-          </motion.a>
+          </motion.button>
         </div>
       </div>
 

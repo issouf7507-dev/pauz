@@ -28,7 +28,7 @@ export default function FunctionMeetsFun() {
   const ref = useReveal<HTMLDivElement>({ stagger: 0.07 })
 
   return (
-    <section className="fmf" ref={ref}>
+    <section className="fmf" id="label" ref={ref}>
       <div className="container">
         <div className="fmf__head">
           <SplitReveal as="h2" className="section-title">

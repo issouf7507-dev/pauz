@@ -2,7 +2,6 @@ export type Product = {
   id: string
   name: string
   flavor: string
-  /** TODO: prix réel à confirmer */
   price: string
   size: string
   tagline: string
@@ -15,7 +14,7 @@ export const product: Product = {
   id: 'pauz-coconut-water',
   name: 'PAUZ Eau de coco',
   flavor: '100 % eau de coco',
-  price: '4,50 $',
+  price: '1 000 FCFA',
   size: '330 ml',
   tagline: 'Une canette. Rien à ajouter.',
   body: "De l’eau de coco pure, mise en canette à froid, et rien d’autre. Sans sucre ajouté, sans concentré, sans colorant — juste l’hydratation nette et naturellement douce dont tu as envie après le soleil, la salle, ou une longue journée.",

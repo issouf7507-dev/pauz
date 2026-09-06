@@ -4,10 +4,12 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Wordmark } from "./Visuals";
 import { banners } from "../assets/media";
+import { useOrder } from "../lib/order";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
+  const { openOrder } = useOrder();
   const ref = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
 
@@ -99,9 +101,9 @@ export default function Hero() {
         </motion.p>
 
         <motion.div custom={4} variants={fade} initial="hidden" animate="show">
-          <a href="#drinks" className="btn btn--sun hero__cta">
+          <button type="button" onClick={() => openOrder(1)} className="btn btn--sun hero__cta">
             Commander
-          </a>
+          </button>
         </motion.div>
       </div>
 

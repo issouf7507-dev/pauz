@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import SplitReveal from './SplitReveal'
 import { banners, shots } from '../assets/media'
+import { useOrder } from '../lib/order'
 
 /**
  * "From the tree to the can" — the five beats that used to be a scroll-scrubbed
@@ -72,6 +73,7 @@ const steps = [
 ]
 
 export default function Story() {
+  const { openOrder } = useOrder()
   const ref = useRef<HTMLElement>(null)
   const [active, setActive] = useState(0)
 
@@ -163,9 +165,9 @@ export default function Story() {
               </ul>
               {s.cta && (
                 <div className="story__cta">
-                  <a href="#drinks" className="btn">
-                    Ajouter au panier
-                  </a>
+                  <button type="button" className="btn" onClick={() => openOrder(1)}>
+                    Commander
+                  </button>
                   <a href="#drinks" className="btn btn--ghost">
                     Voir ce qu’il y a dedans
                   </a>

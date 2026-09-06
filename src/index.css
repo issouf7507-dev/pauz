@@ -148,6 +148,8 @@ section {
   background: var(--maroon);
   color: var(--cream);
   border: 1.5px solid var(--maroon);
+  /* .btn habille aussi des <button> (les CTA qui ouvrent la commande). */
+  cursor: pointer;
   transition:
     background 0.25s ease,
     color 0.25s ease,
